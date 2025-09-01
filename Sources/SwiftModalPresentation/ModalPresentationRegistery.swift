@@ -24,7 +24,11 @@ class ModalPresentationRegistery {
     static let shared = ModalPresentationRegistery()
 
     private static var modalCloseDelay: DispatchTime {
-        DispatchTime.now() + 0.25
+        if #available(iOS 26.0, *) {
+            DispatchTime.now() + 0.6
+        } else {
+            DispatchTime.now() + 0.25
+        }
     }
 
     private var presentedModalForContext = [ModalPresentationContext: PresentedModal]()
